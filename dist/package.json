@@ -1,0 +1,30 @@
+{
+  "name": "ms-validator",
+  "version": "1.0.0",
+  "description": "a vanilla js form validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moustafa2719/ms_vanilla_validator.git"
+  },
+  "keywords": [
+    "validator",
+    "javascript",
+    "validation",
+    "form",
+    "validation",
+    "vanilla",
+    "js",
+    "form",
+    "validator"
+  ],
+  "author": "Moustafa Ibrahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moustafa2719/ms_vanilla_validator/issues"
+  },
+  "homepage": "https://github.com/Moustafa2719/ms_vanilla_validator#readme"
+}
