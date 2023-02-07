@@ -1,0 +1,23 @@
+{
+  "name": "wwwroot",
+  "version": "1.0.0",
+  "description": "ui dependencies",
+  "main": "",
+  "author": "Moustafa Ibrahim",
+  "license": "MIT",
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "file-loader": "^6.2.0",
+    "terser-webpack-plugin": "^5.3.6",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "scripts": {
+    "watch": "webpack watch --mode development",
+    "build": "webpack build --mode production"
+  },
+  "dependencies": {
+    "bootstrap": "5.2.3"
+  }
+}
