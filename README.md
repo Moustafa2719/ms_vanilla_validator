@@ -84,6 +84,7 @@ window.onload = function () {
 ```
 
 ### Textarea Example
+```html
 <div class="col-12">
     <div class="form-group">
         <label class="form-text" for="text">
