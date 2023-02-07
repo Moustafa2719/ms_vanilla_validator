@@ -6,7 +6,6 @@
   "author": "Moustafa Ibrahim",
   "license": "MIT",
   "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
     "file-loader": "^6.2.0",
     "terser-webpack-plugin": "^5.3.6",
     "uglifyjs-webpack-plugin": "^2.2.0",

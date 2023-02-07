@@ -1,7 +1,8 @@
 ﻿var Validate = function (form) {
     this.form = form;
     this.controls = [];
-    this.inputs = form.getElementsByTagName("input");
+
+    let fields = form.elements;
 
     this.classes = {
         show: 'd-block',
@@ -16,31 +17,35 @@
         required: '_required',
         min: '_min',
         max: '_max',
-        minLength: '_minLength',
-        maxLength: '_maxLength',
+        minlength: '_minlength',
+        maxlength: '_maxlength',
         pattern: '_pattern',
         matching: '_matching'
     };
 
-    this.init();
+    this.init(fields);
 };
 
-Validate.prototype.init = function () {
-    for (let i = 0; i < this.inputs.length; i++) {
-        if (this.inputs[i].type !== "hidden") {
-            let input = this.inputs[i];
+Validate.prototype.init = function (fields) {
+    for (let i = 0; i < fields.length; i++) {
+        if (
+            fields[i].type !== "hidden" &&
+            fields[i].nodeName !== "BUTTON"
+        ) {
+            let input = fields[i];
 
             let control = {
                 validity: false,
                 errorType: '',
                 name: input.name,
-                errorElement: input.name + "-error"
+                errorElement: input.name + "-error",
+                type: input.type
             };
 
             if (input.pattern) control.pattern = new RegExp(input.pattern);
             if (input.required) control.required = input.required;
-            if (input.minLength > -1) control.minLength = input.minLength;
-            if (input.maxLength > -1) control.maxLength = input.maxLength;
+            if (input.minLength > -1) control.minlength = input.minLength;
+            if (input.maxLength > -1) control.maxlength = input.maxLength;
             if (input.min > -1) control.min = input.min;
             if (input.max > -1) control.max = input.max;
             if (input.hasAttribute('matchingId')) control.matchingId = input.getAttribute('matchingId');
@@ -75,18 +80,18 @@ Validate.prototype.validate = function (event) {
 
     for (var i = 0; i < this.controls.length; i++) {
         this.controls[i].validity = true;
-        let element = this.form.getElementsByTagName("input")[this.controls[i].name];
+        let element = this.form.elements[this.controls[i].name];
 
         if (this.controls[i].validity == true && this.controls[i].required == true && element.value.trim(" ").length === 0) {
             this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.required);
         }
 
-        if (this.controls[i].validity == true && this.controls[i].minLength && element.value.length < this.controls[i].minLength) {
-            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.minLength);
+        if (this.controls[i].validity == true && this.controls[i].minlength && element.value.length < this.controls[i].minlength) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.minlength);
         }
 
-        if (this.controls[i].validity == true && this.controls[i].maxLength && element.value.length > this.controls[i].maxLength) {
-            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.maxLength);
+        if (this.controls[i].validity == true && this.controls[i].maxlength && element.value.length > this.controls[i].maxlength) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.maxlength);
         }
 
         if (this.controls[i].validity == true && this.controls[i].min && element.value < this.controls[i].min) {

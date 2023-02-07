@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form class="p-5" method="get" novalidate name="example_form">
+                <div class="card">
+                    <div class="card-header">
+                        <h1>Form Validation</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="form-text" for="user_name">User Name</label>
+                                    <input class="form-control inputForm" type="text" name="user_name" id="user_name"
+                                        required="required" />
+
+                                    <div class="valid-feedback error" id="user_name-error">
+                                        <span id="user_name-error_required" class="d-none">user_name_error_req</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="form-text" for="mobile_number">Mobile Number</label>
+                                    <input class="form-control inputForm" type="text" name="mobile_number" id="mobile_number"
+                                        required="required" pattern="[05]{2}[0-9]{8}" minlength="10" maxlength="10" />
+
+                                    <div class="valid-feedback error" id="mobile_number-error">
+                                        <span id="mobile_number-error_required" class="d-none">mobile_number_error_req</span>
+                                        <span id="mobile_number-error_pattern" class="d-none">mobile_number_error_pattern</span>
+                                        <span id="mobile_number-error_minlength" class="d-none">mobile_number_error_minLength</span>
+                                        <span id="mobile_number-error_maxlength" class="d-none">mobile_number_error_maxlength</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="form-text" for="email"> Email </label>
+
+                                    <input class="form-control inputForm" type="email" name="email" id="email"
+                                        required="required" />
+
+                                    <div class="valid-feedback error" id="email-error">
+                                        <span id="email-error_required" class="d-none">email_error_req</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-text" for="password"> Password </label>
+
+                                    <input class="form-control inputForm" type="password" name="password" id="password"
+                                        required="required" />
+
+                                    <div class="valid-feedback error" id="password-error">
+                                        <span id="password-error_required" class="d-none">password_error_req</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="form-text" for="password">
+                                        Confirm Password
+                                    </label>
+
+                                    <input class="form-control inputForm" type="password" name="confirm_password"
+                                        id="confirm_password" required="required" matchingId="password" />
+
+                                    <div class="valid-feedback error" id="confirm_password-error">
+                                        <span id="confirm_password-error_required"
+                                            class="d-none">confirm_password_error_req</span>
+                                        <span id="confirm_password-error_matching"
+                                            class="d-none">confirm_password_error_matching</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="form-text" for="text">
+                                        Text
+                                    </label>
+
+                                    <textarea class="form-control inputForm" name="text" id="text" required="required"
+                                        minlength="10" maxlength="20"></textarea>
+
+                                    <div class="valid-feedback error" id="text-error">
+                                        <span id="text-error_required" class="d-none">text_error_req</span>
+                                        <span id="text-error_minlength" class="d-none">text_error_minlength</span>
+                                        <span id="text-error_maxlength" class="d-none">text_error_maxlength</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="./dist/js/validator.min.js"></script>
+    <script></script>
+    <script>
+        window.onload = function () {
+            new Validate(document.forms.example_form);
+        };
+    </script>
+</body>
+
+</html>
