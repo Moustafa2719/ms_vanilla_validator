@@ -14,7 +14,9 @@
   },
   "scripts": {
     "watch": "webpack watch --mode development",
-    "build": "webpack build --mode production"
+    "build": "yarn rm && webpack build --mode production && yarn copy",
+    "copy": "@powershell copy ./src/js/validator.js ./dist/js/validator.js",
+    "rm": "@powershell rm ./dist/js"
   },
   "dependencies": {
     "bootstrap": "5.2.3"

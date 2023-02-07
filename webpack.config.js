@@ -22,7 +22,7 @@ module.exports = (config, args) => {
                     use: [
                         {
                             loader: "file-loader",
-                            options: { outputPath: "js/", name: "[name].js" },
+                            options: { outputPath: "js/", name: "[name].min.js" },
                         },
                     ],
                 }

@@ -1,1 +1,165 @@
-var Validate=function(t){this.form=t,this.controls=[];t=t.elements;this.classes={show:"d-block",hide:"d-none",hasError:"has-error",validFeedback:"valid-feedback",inValidFeedback:"invalid-feedback",wasValidated:"was-validated"},this.validationTypes={required:"_required",min:"_min",max:"_max",minlength:"_minlength",maxlength:"_maxlength",pattern:"_pattern",matching:"_matching"},this.init(t)};Validate.prototype.init=function(e){for(let t=0;t<e.length;t++){var s,i;"hidden"!==e[t].type&&"BUTTON"!==e[t].nodeName&&(i={validity:!1,errorType:"",name:(s=e[t]).name,errorElement:s.name+"-error",type:s.type},s.pattern&&(i.pattern=new RegExp(s.pattern)),s.required&&(i.required=s.required),-1<s.minLength&&(i.minlength=s.minLength),-1<s.maxLength&&(i.maxlength=s.maxLength),-1<s.min&&(i.min=s.min),-1<s.max&&(i.max=s.max),s.hasAttribute("matchingId")&&(i.matchingId=s.getAttribute("matchingId")),this.controls.push(i),s.addEventListener("keyup",this.hideError.bind(this,this.controls[t]),!0))}this.addEvents()},Validate.prototype.addEvents=function(){this.form.addEventListener("submit",this.validate.bind(this),!0)},Validate.prototype.hideError=function(t){t&&(document.getElementById(t.errorElement).classList.remove(this.classes.show),document.getElementById(t.errorElement).classList.add(this.classes.hide),document.getElementById(t.errorElement+t.errorType).classList.remove(this.classes.show),document.getElementById(t.errorElement+t.errorType).classList.add(this.classes.hide),event.target.parentElement.classList.remove(this.classes.hasError))},Validate.prototype.validate=function(t){t.preventDefault();let e=!0;for(var s=0;s<this.controls.length;s++){this.controls[s].validity=!0;var i=this.form.elements[this.controls[s].name];1==this.controls[s].validity&&1==this.controls[s].required&&0===i.value.trim(" ").length&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.required)),1==this.controls[s].validity&&this.controls[s].minlength&&i.value.length<this.controls[s].minlength&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.minlength)),1==this.controls[s].validity&&this.controls[s].maxlength&&i.value.length>this.controls[s].maxlength&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.maxlength)),1==this.controls[s].validity&&this.controls[s].min&&i.value<this.controls[s].min&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.min)),1==this.controls[s].validity&&this.controls[s].max&&i.value>this.controls[s].max&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.max)),1!=this.controls[s].validity||!this.controls[s].pattern||this.controls[s].pattern.test(i.value)||(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.pattern)),1==this.controls[s].validity&&this.controls[s].matchingId&&document.getElementById(this.controls[s].matchingId).value!==i.value&&(this.controls[s]=this.updateValidity(this.controls[s],!1,this.validationTypes.matching)),e=this.handleErrorsRender(this.controls[s],i,e)}e?this.form.classList.remove(this.classes.hasError):(this.form.classList.add(this.classes.wasValidated),this.form.classList.add(this.classes.hasError)),this.submit(e)},Validate.prototype.handleErrorsRender=function(t,e,s){return t.validity?(document.getElementById(t.errorElement).classList.remove(this.classes.inValidFeedback),document.getElementById(t.errorElement).classList.remove(this.classes.show),document.getElementById(t.errorElement).classList.add(this.classes.validFeedback),document.getElementById(t.errorElement).classList.add(this.classes.hide),document.getElementById(e.id).classList.remove(this.classes.hasError)):(document.getElementById(t.errorElement).classList.remove(this.classes.validFeedback),document.getElementById(t.errorElement).classList.add(this.classes.inValidFeedback),document.getElementById(t.errorElement).classList.add(this.classes.show),document.getElementById(t.errorElement).classList.remove(this.classes.hide),document.getElementById(e.id).classList.add(this.classes.hasError),document.getElementById(e.id).parentElement.classList.add(this.classes.hasError),document.getElementById(t.errorElement+t.errorType).classList.remove(this.classes.hide),document.getElementById(t.errorElement+t.errorType).classList.add(this.classes.show),s=t.validity),s},Validate.prototype.updateValidity=function(t,e,s=""){return t.validity=e,t.errorType=s,t},Validate.prototype.submit=function(t){t&&this.form.submit()};
+﻿var Validate = function (form) {
+    this.form = form;
+    this.controls = [];
+
+    let fields = form.elements;
+
+    this.classes = {
+        show: 'd-block',
+        hide: 'd-none',
+        hasError: 'has-error',
+        validFeedback: 'valid-feedback',
+        inValidFeedback: 'invalid-feedback',
+        wasValidated : 'was-validated'
+    };
+
+    this.validationTypes = {
+        required: '_required',
+        min: '_min',
+        max: '_max',
+        minlength: '_minlength',
+        maxlength: '_maxlength',
+        pattern: '_pattern',
+        matching: '_matching'
+    };
+
+    this.init(fields);
+};
+
+Validate.prototype.init = function (fields) {
+    for (let i = 0; i < fields.length; i++) {
+        if (
+            fields[i].type !== "hidden" &&
+            fields[i].nodeName !== "BUTTON"
+        ) {
+            let input = fields[i];
+
+            let control = {
+                validity: false,
+                errorType: '',
+                name: input.name,
+                errorElement: input.name + "-error",
+                type: input.type
+            };
+
+            if (input.pattern) control.pattern = new RegExp(input.pattern);
+            if (input.required) control.required = input.required;
+            if (input.minLength > -1) control.minlength = input.minLength;
+            if (input.maxLength > -1) control.maxlength = input.maxLength;
+            if (input.min > -1) control.min = input.min;
+            if (input.max > -1) control.max = input.max;
+            if (input.hasAttribute('matchingId')) control.matchingId = input.getAttribute('matchingId');
+
+            this.controls.push(control);
+            input.addEventListener('keyup', this.hideError.bind(this, this.controls[i]), true);
+        }
+    }
+
+    this.addEvents();
+};
+
+Validate.prototype.addEvents = function () {
+    this.form.addEventListener('submit', this.validate.bind(this), true);
+}
+
+Validate.prototype.hideError = function (control) {
+    if (control) {
+        document.getElementById(control.errorElement).classList.remove(this.classes.show)
+        document.getElementById(control.errorElement).classList.add(this.classes.hide);
+        document.getElementById(control.errorElement + control.errorType).classList.remove(this.classes.show);
+        document.getElementById(control.errorElement + control.errorType).classList.add(this.classes.hide);
+
+        event.target.parentElement.classList.remove(this.classes.hasError);
+    }
+};
+
+Validate.prototype.validate = function (event) {
+    event.preventDefault();
+
+    let validity = true;
+
+    for (var i = 0; i < this.controls.length; i++) {
+        this.controls[i].validity = true;
+        let element = this.form.elements[this.controls[i].name];
+
+        if (this.controls[i].validity == true && this.controls[i].required == true && element.value.trim(" ").length === 0) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.required);
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].minlength && element.value.length < this.controls[i].minlength) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.minlength);
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].maxlength && element.value.length > this.controls[i].maxlength) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.maxlength);
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].min && element.value < this.controls[i].min) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.min);
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].max && element.value > this.controls[i].max) {
+            this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.max);
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].pattern) {
+            if (!this.controls[i].pattern.test(element.value)) {
+                this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.pattern);
+            }
+        }
+
+        if (this.controls[i].validity == true && this.controls[i].matchingId) {
+            if (document.getElementById(this.controls[i].matchingId).value !== element.value) {
+                this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.matching);
+            }
+        }
+
+        validity = this.handleErrorsRender(this.controls[i], element, validity);
+    }
+
+    if (!validity) {
+        this.form.classList.add(this.classes.wasValidated);
+        this.form.classList.add(this.classes.hasError);
+    } else {
+        this.form.classList.remove(this.classes.hasError);
+    }
+
+    this.submit(validity);
+};
+
+Validate.prototype.handleErrorsRender = function (control, element, validity) {
+    if (!control.validity) {
+        document.getElementById(control.errorElement).classList.remove(this.classes.validFeedback);
+        document.getElementById(control.errorElement).classList.add(this.classes.inValidFeedback);
+        document.getElementById(control.errorElement).classList.add(this.classes.show);
+        document.getElementById(control.errorElement).classList.remove(this.classes.hide);
+
+        document.getElementById(element.id).classList.add(this.classes.hasError);
+        document.getElementById(element.id).parentElement.classList.add(this.classes.hasError);
+
+        document.getElementById(control.errorElement + control.errorType).classList.remove(this.classes.hide);
+        document.getElementById(control.errorElement + control.errorType).classList.add(this.classes.show);
+
+        validity = control.validity;
+    } else {
+        document.getElementById(control.errorElement).classList.remove(this.classes.inValidFeedback);
+        document.getElementById(control.errorElement).classList.remove(this.classes.show);
+        document.getElementById(control.errorElement).classList.add(this.classes.validFeedback);
+        document.getElementById(control.errorElement).classList.add(this.classes.hide);
+
+        document.getElementById(element.id).classList.remove(this.classes.hasError);
+    }
+
+    return validity;
+};
+
+Validate.prototype.updateValidity = function (control, isValid, errorType = '') {
+    control.validity = isValid;
+    control.errorType = errorType;
+
+    return control;
+};
+
+Validate.prototype.submit = function (validity) {
+    if (validity) this.form.submit();
+};
