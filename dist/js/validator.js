@@ -10,7 +10,7 @@
         hasError: 'has-error',
         validFeedback: 'valid-feedback',
         inValidFeedback: 'invalid-feedback',
-        wasValidated : 'was-validated'
+        wasValidated: 'was-validated'
     };
 
     this.validationTypes = {
@@ -30,6 +30,7 @@ Validate.prototype.init = function (fields) {
     for (let i = 0; i < fields.length; i++) {
         if (
             fields[i].type !== "hidden" &&
+            fields[i].type !== "radio" &&
             fields[i].nodeName !== "BUTTON"
         ) {
             let input = fields[i];
@@ -51,7 +52,9 @@ Validate.prototype.init = function (fields) {
             if (input.hasAttribute('matchingId')) control.matchingId = input.getAttribute('matchingId');
 
             this.controls.push(control);
-            input.addEventListener('keyup', this.hideError.bind(this, this.controls[i]), true);
+            
+            if(control.type !== 'select-one') input.addEventListener('keyup', this.hideError.bind(this, this.controls[i]), true);
+            if(control.type === 'select-one') input.addEventListener('change', this.hideError.bind(this, this.controls[i]), true);
         }
     }
 
@@ -81,6 +84,12 @@ Validate.prototype.validate = function (event) {
     for (var i = 0; i < this.controls.length; i++) {
         this.controls[i].validity = true;
         let element = this.form.elements[this.controls[i].name];
+
+        if (this.controls[i].type == "checkbox") {
+            if (this.controls[i].validity == true && this.controls[i].required == true && element.checked == false) {
+                this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.required);
+            }
+        }
 
         if (this.controls[i].validity == true && this.controls[i].required == true && element.value.trim(" ").length === 0) {
             this.controls[i] = this.updateValidity(this.controls[i], false, this.validationTypes.required);

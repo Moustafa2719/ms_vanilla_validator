@@ -20,7 +20,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-4 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="user_name">User Name</label>
                                     <input class="form-control inputForm" type="text" name="user_name" id="user_name"
@@ -31,23 +31,28 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-4">
+
+                            <div class="col-4 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="mobile_number">Mobile Number</label>
-                                    <input class="form-control inputForm" type="text" name="mobile_number" id="mobile_number"
-                                        required="required" pattern="[05]{2}[0-9]{8}" minlength="10" maxlength="10" />
+                                    <input class="form-control inputForm" type="text" name="mobile_number"
+                                        id="mobile_number" required="required" pattern="[05]{2}[0-9]{8}" minlength="10"
+                                        maxlength="10" />
 
                                     <div class="valid-feedback error" id="mobile_number-error">
-                                        <span id="mobile_number-error_required" class="d-none">mobile_number_error_req</span>
-                                        <span id="mobile_number-error_pattern" class="d-none">mobile_number_error_pattern</span>
-                                        <span id="mobile_number-error_minlength" class="d-none">mobile_number_error_minLength</span>
-                                        <span id="mobile_number-error_maxlength" class="d-none">mobile_number_error_maxlength</span>
+                                        <span id="mobile_number-error_required"
+                                            class="d-none">mobile_number_error_req</span>
+                                        <span id="mobile_number-error_pattern"
+                                            class="d-none">mobile_number_error_pattern</span>
+                                        <span id="mobile_number-error_minlength"
+                                            class="d-none">mobile_number_error_minLength</span>
+                                        <span id="mobile_number-error_maxlength"
+                                            class="d-none">mobile_number_error_maxlength</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-4 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="email"> Email </label>
 
@@ -60,7 +65,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="password"> Password </label>
 
@@ -73,7 +78,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">
+                            <div class="col-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="password">
                                         Confirm Password
@@ -91,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-text" for="text">
                                         Text
@@ -104,6 +109,60 @@
                                         <span id="text-error_required" class="d-none">text_error_req</span>
                                         <span id="text-error_minlength" class="d-none">text_error_minlength</span>
                                         <span id="text-error_maxlength" class="d-none">text_error_maxlength</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-text" for="select">
+                                        select menu
+                                    </label>
+
+                                    <select class="form-control custom-select" id="select" name="select"
+                                        required="required">
+                                        <option value="">Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+
+                                    <div class="valid-feedback error" id="select-error">
+                                        <span id="select-error_required" class="d-none">select_error_req</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" name="checkbox" class="custom-control-input"
+                                            id="checkbox" required="required" />
+
+                                        <label class="custom-control-label" for="checkbox">
+                                            Check this custom checkbox
+                                        </label>
+
+                                        <div class="valid-feedback error" id="checkbox-error">
+                                            <span id="checkbox-error_required" class="d-none">checkbox_error_req</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customRadio1" name="customRadio"
+                                            class="custom-control-input" required="required" value="1" />
+                                        <label class="custom-control-label" for="customRadio1">Toggle this custom
+                                            radio</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customRadio2" name="customRadio"
+                                            class="custom-control-input" required="required" value="2" />
+                                        <label class="custom-control-label" for="customRadio2">Or toggle this other
+                                            custom radio</label>
                                     </div>
                                 </div>
                             </div>
