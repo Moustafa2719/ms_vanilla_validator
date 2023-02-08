@@ -1,6 +1,6 @@
 {
   "name": "ms-validator",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "description": "a vanilla js form validator",
   "main": "index.js",
   "scripts": {
@@ -16,10 +16,15 @@
     "validation",
     "form",
     "validation",
-    "vanilla",
-    "js",
+    "vanilla js",
     "form",
-    "validator"
+    "validator",
+    "validatorjs",
+    "validator.js",
+    "form input validation",
+    "Bootstrap",
+    "Bootstrap Form Validator",
+    "Bootstrap Form Validation"
   ],
   "author": "Moustafa Ibrahim",
   "license": "ISC",
