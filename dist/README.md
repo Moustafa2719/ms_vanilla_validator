@@ -108,7 +108,7 @@ window.onload = function () {
 </div>
 ```
 
-### Textarea Example
+### Group Example to validate at least one added value
 ```html
 <div class="row">
     <div class="col-12">Group 1</div>
