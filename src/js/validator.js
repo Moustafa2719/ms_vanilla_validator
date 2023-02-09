@@ -199,11 +199,11 @@ Validate.prototype.checkRequiredValue = function (value) {
 };
 
 Validate.prototype.checkMinValue = function (value, minRequiredValue) {
-    return element.value < minRequiredValue;
+    return value < minRequiredValue;
 };
 
 Validate.prototype.checkMaxValue = function (value, maxRequiredValue) {
-    return element.value > maxRequiredValue;
+    return value > maxRequiredValue;
 };
 
 Validate.prototype.checkMinLengthValue = function (value, requiredLength) {
