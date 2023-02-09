@@ -1,6 +1,6 @@
 {
   "name": "ms-validator",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "a vanilla js form validator",
   "main": "index.js",
   "scripts": {

@@ -107,5 +107,54 @@ window.onload = function () {
     </div>
 </div>
 ```
+
+### Textarea Example
+```html
+<div class="row">
+    <div class="col-12">Group 1</div>
+    <div class="col-4 mb-3">
+        <div class="form-group">
+            <label class="form-text" for="option_1">option 1</label>
+            <input class="form-control inputForm" type="text" name="option_1" id="option_1"
+                group="1" minlength="5" />
+
+            <div class="valid-feedback error" id="option_1-error">
+                <span id="option_1-error_required" class="d-none">option_1_error_req</span>
+                <span id="option_1-error_minlength" class="d-none">option_1_error_minlength</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 mb-3">
+        <div class="form-group">
+            <label class="form-text" for="option_2">option 2</label>
+            <input class="form-control inputForm" type="text" name="option_2" id="option_2"
+                group="1" minlength="5" />
+
+            <div class="valid-feedback error" id="option_2-error">
+                <span id="option_2-error_required" class="d-none">option_2_error_req</span>
+                <span id="option_2-error_minlength" class="d-none">option_2_error_minlength</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 mb-3">
+        <div class="form-group">
+            <label class="form-text" for="option_3">option 3</label>
+            <input class="form-control inputForm" type="text" name="option_3" id="option_3"
+                group="1" minlength="5" />
+
+            <div class="valid-feedback error" id="option_3-error">
+                <span id="option_3-error_required" class="d-none">option_3_error_req</span>
+                <span id="option_3-error_minlength" class="d-none">option_3_error_minlength</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="valid-feedback error" id="group_1-error">
+        <span id="group_1-error_required" class="d-none">add at least one of group_1values</span>
+    </div>
+</div>
+```
 ### GITHUb
 https://github.com/Moustafa2719/ms_vanilla_validator
