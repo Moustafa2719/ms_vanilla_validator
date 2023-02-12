@@ -1,9 +1,12 @@
-﻿var Validate = function (form) {
-    this.form = form;
+﻿var Validate = function (settings) {
+    this.form = settings.form;
+    this.callback = settings.callback;
+    this.autoSubmit = settings.autoSubmit;
+
     this.controls = [];
     this.groups = [];
 
-    let fields = form.elements;
+    let fields = this.form.elements;
 
     this.classes = {
         show: 'd-block',
@@ -157,6 +160,7 @@ Validate.prototype.validateFields = function (fields) {
             }
         }
 
+        this.controls = fields;
         validity = this.handleFieldErrorsRender(fields[i], element, validity);
     }
 
@@ -166,8 +170,6 @@ Validate.prototype.validateFields = function (fields) {
     } else {
         this.form.classList.remove(this.classes.hasError);
     }
-
-    // this.controls = fields;
 
     return validity;
 };
@@ -191,7 +193,16 @@ Validate.prototype.updateValidity = function (control, isValid, errorType = '') 
 };
 
 Validate.prototype.submit = function (validity) {
-    if (validity) this.form.submit(validity);
+    let form = {
+        controls: this.controls,
+        groups: this.groups,
+        validity: validity,
+        submited: true
+    };
+
+    this.callback(form);
+
+    if (validity && this.autoSubmit) this.form.submit();
 };
 
 Validate.prototype.checkRequiredValue = function (value) {

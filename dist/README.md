@@ -156,5 +156,12 @@ window.onload = function () {
     </div>
 </div>
 ```
+
+| Paramater | Description    | Type    |
+| :---:   | :---: | :---: |
+| form | the form selector   | string   |
+| autoSubmit | a boolean paramater to allow plugin from autosubmition   | Boolean   |
+| callback | a callback function to be excuted after validation is done to return validation results and allow you from sumit an ajax request in case autoSubmit is false  | Function   |
+
 ### GITHUb
 https://github.com/Moustafa2719/ms_vanilla_validator

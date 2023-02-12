@@ -178,7 +178,8 @@
 
                                     <div class="valid-feedback error" id="option_1-error">
                                         <span id="option_1-error_required" class="d-none">option_1_error_req</span>
-                                        <span id="option_1-error_minlength" class="d-none">option_1_error_minlength</span>
+                                        <span id="option_1-error_minlength"
+                                            class="d-none">option_1_error_minlength</span>
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +192,8 @@
 
                                     <div class="valid-feedback error" id="option_2-error">
                                         <span id="option_2-error_required" class="d-none">option_2_error_req</span>
-                                        <span id="option_2-error_minlength" class="d-none">option_2_error_minlength</span>
+                                        <span id="option_2-error_minlength"
+                                            class="d-none">option_2_error_minlength</span>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +206,8 @@
 
                                     <div class="valid-feedback error" id="option_3-error">
                                         <span id="option_3-error_required" class="d-none">option_3_error_req</span>
-                                        <span id="option_3-error_minlength" class="d-none">option_3_error_minlength</span>
+                                        <span id="option_3-error_minlength"
+                                            class="d-none">option_3_error_minlength</span>
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +281,13 @@
     <script></script>
     <script>
         window.onload = function () {
-            new Validate(document.forms.example_form);
+            new Validate({
+                form: document.forms.example_form,
+                autoSubmit: true,
+                callback: function (form) {
+                    console.log(form)
+                }
+            });
         };
     </script>
 </body>
