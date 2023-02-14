@@ -77,9 +77,9 @@ Validate.prototype.validateBeforeSubmit = function (event) {
     event.preventDefault();
 
     let groupsValidity = this.validateGroup(this.groups);
-    let FieldsValidity = this.validateFields(this.controls);
+    let fieldsValidity = this.validateFields(this.controls);
 
-    this.submit(groupsValidity && FieldsValidity);
+    this.submit(groupsValidity && fieldsValidity);
 }
 
 Validate.prototype.validateGroup = function (groups) {

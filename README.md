@@ -40,12 +40,17 @@ Inputs require name and validators attr
 />
 ```
 
-####Javascript　
+### Javascript　
 
 ```javascript
 window.onload = function () {
-  // pass form name attr to the Validator Plugin
-  new Validate(document.forms.example_form);
+    new Validate({
+        form: document.forms.example_form,
+        autoSubmit: true,
+        callback: function (form) {
+            console.log(form)
+        }
+    });
 };
 ```
 
@@ -159,7 +164,7 @@ window.onload = function () {
 
 | Paramater | Description    | Type    |
 | :---:   | :---: | :---: |
-| form | the form selector   | string   |
+| form | the form selector   | String   |
 | autoSubmit | a boolean paramater to allow plugin from autosubmition   | Boolean   |
 | callback | a callback function to be excuted after validation is done to return validation results and allow you from sumit an ajax request in case autoSubmit is false  | Function   |
 
