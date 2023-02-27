@@ -175,7 +175,7 @@ Validate.prototype.validateFields = function (fields) {
 };
 
 Validate.prototype.hideError = function (control) {
-    if (control) {
+    if (control && document.getElementById(control.errorElement)) {
         document.getElementById(control.errorElement).classList.remove(this.classes.show)
         document.getElementById(control.errorElement).classList.add(this.classes.hide);
         document.getElementById(control.errorElement + control.errorType).classList.remove(this.classes.show);
@@ -240,16 +240,18 @@ Validate.prototype.handleGroupErrorsRender = function (groupName, validity) {
 }
 
 Validate.prototype.handleFieldErrorsRender = function (control, element, validity) {
-    document.getElementById(control.errorElement).classList[!control.validity ? 'remove' : 'add'](this.classes.validFeedback);
-    document.getElementById(control.errorElement).classList[control.validity ? 'remove' : 'add'](this.classes.inValidFeedback);
-    document.getElementById(control.errorElement).classList[control.validity ? 'remove' : 'add'](this.classes.show);
-    document.getElementById(control.errorElement).classList[!control.validity ? 'remove' : 'add'](this.classes.hide);
+    if (document.getElementById(control.errorElement)) {
+        document.getElementById(control.errorElement).classList[!control.validity ? 'remove' : 'add'](this.classes.validFeedback);
+        document.getElementById(control.errorElement).classList[control.validity ? 'remove' : 'add'](this.classes.inValidFeedback);
+        document.getElementById(control.errorElement).classList[control.validity ? 'remove' : 'add'](this.classes.show);
+        document.getElementById(control.errorElement).classList[!control.validity ? 'remove' : 'add'](this.classes.hide);
 
-    document.getElementById(element.id).classList[!control.validity ? 'remove' : 'add'](this.classes.hasError);
-    document.getElementById(element.id).parentElement.classList[!control.validity ? 'remove' : 'add'](this.classes.hasError);
+        document.getElementById(element.id).classList[!control.validity ? 'remove' : 'add'](this.classes.hasError);
+        document.getElementById(element.id).parentElement.classList[!control.validity ? 'remove' : 'add'](this.classes.hasError);
 
-    document.getElementById(control.errorElement + control.errorType).classList[!control.validity ? 'remove' : 'add'](this.classes.hide);
-    document.getElementById(control.errorElement + control.errorType).classList[control.validity ? 'remove' : 'add'](this.classes.show);
+        document.getElementById(control.errorElement + control.errorType).classList[!control.validity ? 'remove' : 'add'](this.classes.hide);
+        document.getElementById(control.errorElement + control.errorType).classList[control.validity ? 'remove' : 'add'](this.classes.show);
+    }
 
     if (!control.validity) validity = control.validity;
     return validity;
